@@ -85,6 +85,15 @@ export default class FinanceTrackerPlugin extends Plugin {
     });
 
     this.addSettingTab(new FinanceSettingTab(this.app, this));
+
+    this.registerEvent(
+      this.app.vault.on("modify", (file) => {
+        const transactionFolder = `${this.settings.folder}/Transactions/`;
+        if (file.path.startsWith(transactionFolder) && file.path.endsWith(".md")) {
+          void this.refreshDashboard();
+        }
+      }),
+    );
   }
 
   async openDashboard(): Promise<void> {
@@ -341,6 +350,7 @@ class TransactionModal extends Modal {
 class FinanceDashboardView extends ItemView {
   private readonly plugin: FinanceTrackerPlugin;
   private month = localDate().substring(0, 7);
+  private renderVersion = 0;
 
   constructor(leaf: WorkspaceLeaf, plugin: FinanceTrackerPlugin) {
     super(leaf);
@@ -364,6 +374,7 @@ class FinanceDashboardView extends ItemView {
   }
 
   async render(): Promise<void> {
+    const renderVersion = ++this.renderVersion;
     const container = this.contentEl;
     container.empty();
     container.addClass("finance-dashboard");
@@ -389,6 +400,9 @@ class FinanceDashboardView extends ItemView {
     };
 
     const transactions = await this.plugin.getTransactionsForMonth(this.month);
+    if (renderVersion !== this.renderVersion) {
+      return;
+    }
     const income = sumByType(transactions, "income");
     const investments = sumByType(transactions, "investment");
     const expenses = sumByType(transactions, "expense");
