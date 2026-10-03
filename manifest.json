@@ -1,0 +1,9 @@
+{
+  "id": "finance-tracker",
+  "name": "My Finance Tracker",
+  "version": "0.1.0",
+  "minAppVersion": "1.8.0",
+  "description": "Track monthly income, investments and expenses using portable Markdown notes.",
+  "author": "Suri",
+  "isDesktopOnly": false
+}

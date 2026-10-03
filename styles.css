@@ -1,0 +1,115 @@
+.finance-dashboard {
+  padding: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.finance-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.finance-header h2 {
+  margin: 0;
+}
+
+.finance-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.finance-header-controls input {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+  color: var(--text-normal);
+}
+
+.finance-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.finance-card {
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.finance-card-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.finance-card-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.finance-dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+}
+
+.finance-dashboard th,
+.finance-dashboard td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  text-align: left;
+}
+
+.finance-dashboard th {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.finance-dashboard td:last-child,
+.finance-dashboard th:last-child {
+  text-align: right;
+}
+
+.finance-modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.finance-empty {
+  color: var(--text-muted);
+  padding: 20px 0;
+}
+
+@media (max-width: 600px) {
+  .finance-dashboard {
+    padding: 12px;
+  }
+
+  .finance-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .finance-header-controls {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .finance-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .finance-dashboard table {
+    font-size: 0.85rem;
+  }
+}
